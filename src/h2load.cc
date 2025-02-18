@@ -1835,7 +1835,11 @@ void resolve_host() {
   hints.ai_family = AF_UNSPEC;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_protocol = 0;
-  hints.ai_flags = AI_ADDRCONFIG;
+  #if (defined(__QNX__) && __QNX__ < 800)
+    hints.ai_flags = AI_PASSIVE;
+  #else
+    hints.ai_flags = AI_ADDRCONFIG;
+  #endif
 
   const auto &resolve_host =
       config.connect_to_host.empty() ? config.host : config.connect_to_host;
