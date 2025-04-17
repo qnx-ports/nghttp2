@@ -50,11 +50,11 @@ if(ENABLE_FAILMALLOC)
   )
   if(QNX)
     add_executable(failmalloc
-      ${MAIN_SOURCES}
+      ${FAILMALLOC_SOURCES}
     )
   else()
     add_executable(failmalloc EXCLUDE_FROM_ALL
-      ${MAIN_SOURCES}
+      ${FAILMALLOC_SOURCES}
     )
   endif()
   target_link_libraries(failmalloc
